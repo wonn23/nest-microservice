@@ -15,7 +15,6 @@ export class AuthController {
     @CurrentUser() user: UserDocument,
     @Res({ passthrough: true }) response: Response,
   ) {
-    console.log('auth 컨트롤러는 지나감');
     await this.authService.login(user, response);
     response.send(user);
   }

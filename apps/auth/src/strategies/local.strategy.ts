@@ -6,13 +6,12 @@ import { PassportStrategy } from '@nestjs/passport';
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly usersService: UsersService) {
-    super({ usernameFiled: 'email' });
+    super({ usernameField: 'email' });
   }
 
   async validate(email: string, password: string) {
     try {
-      console.log('여기는 지나감');
-      return await this.usersService.veryfiUser(email, password);
+      return await this.usersService.verifyUser(email, password);
     } catch (error) {
       throw new UnauthorizedException(error);
     }
